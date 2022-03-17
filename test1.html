@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p id="demo"></p>
+
+<script>
+let words = [];
+let vowels = 'aeiou';
+let result_array =[];
+let text = "Smart people learn from everything and everyone, average people from their experience, stupid people already, have all the answers";
+text = text.replace(/[^a-z-A-Z ]/g, "").replace(/ +/, " ");
+words = text.split(" ");
+words.sort((a,b)=>{return b.length - a.length});
+let max_length = words[0].length;
+let result = words.filter(checkLength);
+result_array.sort((a,b)=>{return b.length - a.length});
+document.getElementById("demo").innerHTML = result_array[0].word;
+
+function checkLength(word){
+    let word_length = word.length;
+	if(word_length == max_length){
+        let characters = Array.from(word);
+        let length = 0 ;
+        characters.map((letter)=>{
+        	if(vowels.indexOf(letter) != -1){
+        		length ++;
+        	}
+        });
+        let word_info = {word:word,length:length};
+        result_array.push(word_info);
+		return true;
+	}
+}
+
+</script>
+
+</body>
+</html>
